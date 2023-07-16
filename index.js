@@ -47,7 +47,7 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
+        // await client.connect();
         // Send a ping to confirm a successful connection
 
         const usersCollections = client.db('bistroBoosDB').collection('users');
@@ -85,7 +85,6 @@ async function run() {
             console.log(user);
             const query = { email: user.email }
             const existingUser = await usersCollections.findOne(query)
-            console.log('existing user', existingUser);
             if (existingUser) {
                 return res.send({ message: 'user already exist' })
             }
